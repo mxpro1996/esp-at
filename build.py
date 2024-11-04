@@ -151,6 +151,11 @@ def auto_update_idf(platform_name, module_name):
         if ret:
             raise Exception("git submodule update failed")
         print('Update completed')
+        ret = subprocess.call('sed -i '462s/0/1000/' ./esp-idf/components/lwip/lwip/src/api/tcpip.c, shell = True)
+        ret = subprocess.call('sed -n '462p' ./esp-idf/components/lwip/lwip/src/api/tcpip.c, shell = True)
+        if ret:
+            raise Exception("Patch wait-sem err")
+        print('Patch completed')
 
 def at_patch_if_config(platform, module):
     config_dir = os.path.join(os.getcwd(), 'module_config', 'module_{}'.format(module.lower()))
