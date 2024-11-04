@@ -145,9 +145,11 @@ def auto_update_idf(platform_name, module_name):
         if ret:
             raise Exception("git pull failed")
         ret = subprocess.call('cd esp-idf && git checkout {}'.format(idf_commit), shell = True)
+        print("End Of checkout")
         if ret:
             raise Exception("git checkout failed")
         ret = subprocess.call('cd esp-idf && git submodule update --init --recursive', shell = True)
+        print("End Of submodule")
         if ret:
             raise Exception("git submodule update failed")
         print('Update completed')
@@ -395,6 +397,7 @@ def main():
     at_patch_if_config(platform_name, module_name)
 
     build_project(platform_name, module_name, silence, build_args)
+    print("build_proj: Start")
 
 
 if __name__ == '__main__':
