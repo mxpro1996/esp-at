@@ -1,6 +1,6 @@
 name: Build ESP-AT Project
 
-on: push
+on: workflow_dispatch
 
 jobs:
   build-esp32-wroom-at:
