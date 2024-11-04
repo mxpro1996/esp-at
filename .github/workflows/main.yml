@@ -24,6 +24,7 @@ jobs:
       run: |
         python ./esp-idf/tools/idf_tools.py --non-interactive install && eval "$(python ./esp-idf/tools/idf_tools.py --non-interactive export)" || exit 1
         python ./esp-idf/tools/idf_tools.py export --prefer-system
+        ls
         sed -i '462s/0/1000/' ./esp-idf/components/lwip/lwip/src/api/tcpip.c
         sed -n '462p' ./esp-idf/components/lwip/lwip/src/api/tcpip.c 
         ./build.py build
